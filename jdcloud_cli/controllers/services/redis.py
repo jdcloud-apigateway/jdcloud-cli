@@ -2057,6 +2057,81 @@ class RedisController(BaseController):
     @expose(
         arguments=[
             (['--region-id'], dict(help="""(string) 缓存Redis实例所在区域的Region ID。目前有华北-北京、华南-广州、华东-上海三个区域，Region ID分别为cn-north-1、cn-south-1、cn-east-2 """, dest='regionId',  required=False)),
+            (['--cache-instance-id'], dict(help="""(string) 缓存Redis实例ID，是访问实例的唯一标识 """, dest='cacheInstanceId',  required=True)),
+            (['--start-time'], dict(help="""(string) 开始时间，RFC3339格式，最多可以查询30天内的数据 """, dest='startTime',  required=False)),
+            (['--end-time'], dict(help="""(string) 结束时间，RFC3339格式，查询时间范围最多7天 """, dest='endTime',  required=False)),
+            (['--input-json'], dict(help='(json) 以json字符串或文件绝对路径形式作为输入参数。\n字符串方式举例：--input-json \'{"field":"value"}\';\n文件格式举例：--input-json file:///xxxx.json', dest='input_json', required=False)),
+            (['--jdcloud-header'], dict(help="""(json) 用户自定义Header，举例：'{"x-jdcloud-security-token":"abc","test":"123"}'""", dest='jdcloudHeaders', required=False)),
+            (['--headers'], dict(help="""(json) 用户自定义Header，举例：'{"x-jdcloud-security-token":"abc","test":"123"}'""", dest='headers', required=False)),
+        ],
+        formatter_class=RawTextHelpFormatter,
+        help=''' 查询热key分析结果汇总 ''',
+        description='''
+            查询热key分析结果汇总。
+
+            示例: jdc redis describe-hot-key-summary  --cache-instance-id xxx
+        ''',
+    )
+    def describe_hot_key_summary(self):
+        client_factory = ClientFactory('redis')
+        client = client_factory.get(self.app)
+        if client is None:
+            return
+
+        try:
+            from jdcloud_sdk.services.redis.apis.DescribeHotKeySummaryRequest import DescribeHotKeySummaryRequest
+            params_dict = collect_user_args(self.app)
+            headers = collect_user_headers(self.app)
+            req = DescribeHotKeySummaryRequest(params_dict, headers)
+            resp = client.send(req)
+            Printer.print_result(resp)
+        except ImportError:
+            print('{"error":"This api is not supported, please use the newer version"}')
+        except Exception as e:
+            print(e)
+
+    @expose(
+        arguments=[
+            (['--region-id'], dict(help="""(string) 缓存Redis实例所在区域的Region ID。目前有华北-北京、华南-广州、华东-上海三个区域，Region ID分别为cn-north-1、cn-south-1、cn-east-2 """, dest='regionId',  required=False)),
+            (['--cache-instance-id'], dict(help="""(string) 缓存Redis实例ID，是访问实例的唯一标识 """, dest='cacheInstanceId',  required=True)),
+            (['--node-id'], dict(help="""(string) 节点id """, dest='nodeId',  required=True)),
+            (['--page-number'], dict(help="""(int) 页码；默认为1 """, dest='pageNumber', type=int, required=False)),
+            (['--page-size'], dict(help="""(int) 分页大小；默认为10；取值范围[10, 100] """, dest='pageSize', type=int, required=False)),
+            (['--start-time'], dict(help="""(string) 开始时间，RFC3339格式，最多可以查询30天内的数据 """, dest='startTime',  required=False)),
+            (['--end-time'], dict(help="""(string) 结束时间，RFC3339格式，查询时间范围最多7天 """, dest='endTime',  required=False)),
+            (['--input-json'], dict(help='(json) 以json字符串或文件绝对路径形式作为输入参数。\n字符串方式举例：--input-json \'{"field":"value"}\';\n文件格式举例：--input-json file:///xxxx.json', dest='input_json', required=False)),
+            (['--jdcloud-header'], dict(help="""(json) 用户自定义Header，举例：'{"x-jdcloud-security-token":"abc","test":"123"}'""", dest='jdcloudHeaders', required=False)),
+            (['--headers'], dict(help="""(json) 用户自定义Header，举例：'{"x-jdcloud-security-token":"abc","test":"123"}'""", dest='headers', required=False)),
+        ],
+        formatter_class=RawTextHelpFormatter,
+        help=''' 查询热key分析详情 ''',
+        description='''
+            查询热key分析详情。
+
+            示例: jdc redis describe-hot-key-detail  --cache-instance-id xxx --node-id xxx
+        ''',
+    )
+    def describe_hot_key_detail(self):
+        client_factory = ClientFactory('redis')
+        client = client_factory.get(self.app)
+        if client is None:
+            return
+
+        try:
+            from jdcloud_sdk.services.redis.apis.DescribeHotKeyDetailRequest import DescribeHotKeyDetailRequest
+            params_dict = collect_user_args(self.app)
+            headers = collect_user_headers(self.app)
+            req = DescribeHotKeyDetailRequest(params_dict, headers)
+            resp = client.send(req)
+            Printer.print_result(resp)
+        except ImportError:
+            print('{"error":"This api is not supported, please use the newer version"}')
+        except Exception as e:
+            print(e)
+
+    @expose(
+        arguments=[
+            (['--region-id'], dict(help="""(string) 缓存Redis实例所在区域的Region ID。目前有华北-北京、华南-广州、华东-上海三个区域，Region ID分别为cn-north-1、cn-south-1、cn-east-2 """, dest='regionId',  required=False)),
             (['--redis-version'], dict(help="""(string) 缓存Redis的版本号：目前有2.8和4.0，默认为2.8 """, dest='redisVersion',  required=False)),
             (['--input-json'], dict(help='(json) 以json字符串或文件绝对路径形式作为输入参数。\n字符串方式举例：--input-json \'{"field":"value"}\';\n文件格式举例：--input-json file:///xxxx.json', dest='input_json', required=False)),
             (['--jdcloud-header'], dict(help="""(json) 用户自定义Header，举例：'{"x-jdcloud-security-token":"abc","test":"123"}'""", dest='jdcloudHeaders', required=False)),
@@ -2156,7 +2231,7 @@ class RedisController(BaseController):
 
     @expose(
         arguments=[
-            (['--api'], dict(help="""(string) api name """, choices=['describe-spec-config','describe-available-resource','describe-available-resource2','describe-cache-instances','create-cache-instance','describe-cache-instance','modify-cache-instance-attribute','delete-cache-instance','modify-cache-instance-class','reset-cache-instance-password','describe-instance-config','modify-instance-config','describe-analysis-time','modify-analysis-time','describe-cache-analysis-list','create-cache-analysis','describe-cache-analysis-result','describe-client-list','describe-client-ip-detail','describe-backups','create-backup','describe-backup-policy','modify-backup-policy','restore-instance','describe-download-url','describe-cluster-info','describe-ip-white-list','modify-ip-white-list','describe-slow-log','describe-task-progress-list','get-disable-commands','set-disable-commands','describe-accounts','create-account','modify-account','delete-account','modify-accounts','start-clear-data','stop-clear-data','describe-clear-data','describe-big-key-list','create-big-key-analysis','describe-big-key-detail','describe-big-key-analysis-time','modify-big-key-analysis-time','stop-cache-analysis','describe-analysis-threshold','modify-analysis-threshold','create-big-key-analysis2','describe-big-key-list2','describe-big-key-detail2','describe-big-key-analysis-time2','modify-big-key-analysis-time2','describe-analysis-threshold2','modify-analysis-threshold2','describe-hot-key-result2','describe-hot-key-detail2','describe-instance-class','describe-available-region','describe-user-quota',], required=True)),
+            (['--api'], dict(help="""(string) api name """, choices=['describe-spec-config','describe-available-resource','describe-available-resource2','describe-cache-instances','create-cache-instance','describe-cache-instance','modify-cache-instance-attribute','delete-cache-instance','modify-cache-instance-class','reset-cache-instance-password','describe-instance-config','modify-instance-config','describe-analysis-time','modify-analysis-time','describe-cache-analysis-list','create-cache-analysis','describe-cache-analysis-result','describe-client-list','describe-client-ip-detail','describe-backups','create-backup','describe-backup-policy','modify-backup-policy','restore-instance','describe-download-url','describe-cluster-info','describe-ip-white-list','modify-ip-white-list','describe-slow-log','describe-task-progress-list','get-disable-commands','set-disable-commands','describe-accounts','create-account','modify-account','delete-account','modify-accounts','start-clear-data','stop-clear-data','describe-clear-data','describe-big-key-list','create-big-key-analysis','describe-big-key-detail','describe-big-key-analysis-time','modify-big-key-analysis-time','stop-cache-analysis','describe-analysis-threshold','modify-analysis-threshold','create-big-key-analysis2','describe-big-key-list2','describe-big-key-detail2','describe-big-key-analysis-time2','modify-big-key-analysis-time2','describe-analysis-threshold2','modify-analysis-threshold2','describe-hot-key-result2','describe-hot-key-detail2','describe-hot-key-summary','describe-hot-key-detail','describe-instance-class','describe-available-region','describe-user-quota',], required=True)),
         ],
         formatter_class=RawTextHelpFormatter,
         help=''' 生成单个API接口的json骨架空字符串 ''',

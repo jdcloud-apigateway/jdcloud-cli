@@ -28,6 +28,7 @@ from jdcloud_cli.controllers.services.redis import RedisController
 from jdcloud_cli.controllers.services.billing import BillingController
 from jdcloud_cli.controllers.services.portal import PortalController
 from jdcloud_cli.controllers.services.clouddnsservice import ClouddnsserviceController
+from jdcloud_cli.controllers.services.ag import AgController
 from jdcloud_cli.controllers.services.cdn import CdnController
 from jdcloud_cli.controllers.services.streambus import StreambusController
 from jdcloud_cli.controllers.services.apigateway import ApigatewayController
@@ -101,6 +102,7 @@ def main():
         app.handler.register(BillingController)
         app.handler.register(PortalController)
         app.handler.register(ClouddnsserviceController)
+        app.handler.register(AgController)
         app.handler.register(CdnController)
         app.handler.register(StreambusController)
         app.handler.register(ApigatewayController)

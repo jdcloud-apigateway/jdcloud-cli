@@ -328,6 +328,7 @@ class CdnController(BaseController):
             (['--period'], dict(help="""(string) 时间粒度，可选值:[oneMin,fiveMin,followTime],followTime只会返回一个汇总后的数据 """, dest='period',  required=False)),
             (['--scheme'], dict(help="""(string) 查询协议，可选值:[http,https,all],传空默认返回全部协议汇总后的数据 """, dest='scheme',  required=False)),
             (['--cache-type'], dict(help="""(string) 查询节点层级，可选值:[all,edge,mid],默认查询all,edge边缘 mid中间 """, dest='cacheType',  required=False)),
+            (['--ip-type'], dict(help="""(string) 查询IP类型，可选值:[,ipv4,ipv6],默认查询all """, dest='ipType',  required=False)),
             (['--input-json'], dict(help='(json) 以json字符串或文件绝对路径形式作为输入参数。\n字符串方式举例：--input-json \'{"field":"value"}\';\n文件格式举例：--input-json file:///xxxx.json', dest='input_json', required=False)),
             (['--jdcloud-header'], dict(help="""(json) 用户自定义Header，举例：'{"x-jdcloud-security-token":"abc","test":"123"}'""", dest='jdcloudHeaders', required=False)),
             (['--headers'], dict(help="""(json) 用户自定义Header，举例：'{"x-jdcloud-security-token":"abc","test":"123"}'""", dest='headers', required=False)),
@@ -368,6 +369,7 @@ class CdnController(BaseController):
             (['--isp'], dict(help="""(string) 查询的运营商，cmcc,cnc,ct，表示移动、联通、电信。多个用逗号分隔 """, dest='isp',  required=False)),
             (['--period'], dict(help="""(string) 时间粒度，可选值:[oneMin,fiveMin,followTime],followTime只会返回一个汇总后的数据 """, dest='period',  required=False)),
             (['--cache-type'], dict(help="""(string) 查询节点层级，可选值:[all,edge,mid],默认查询all,edge边缘 mid中间 """, dest='cacheType',  required=False)),
+            (['--ip-type'], dict(help="""(string) 查询IP类型，可选值:[,ipv4,ipv6],默认查询all """, dest='ipType',  required=False)),
             (['--input-json'], dict(help='(json) 以json字符串或文件绝对路径形式作为输入参数。\n字符串方式举例：--input-json \'{"field":"value"}\';\n文件格式举例：--input-json file:///xxxx.json', dest='input_json', required=False)),
             (['--jdcloud-header'], dict(help="""(json) 用户自定义Header，举例：'{"x-jdcloud-security-token":"abc","test":"123"}'""", dest='jdcloudHeaders', required=False)),
             (['--headers'], dict(help="""(json) 用户自定义Header，举例：'{"x-jdcloud-security-token":"abc","test":"123"}'""", dest='headers', required=False)),
@@ -409,6 +411,7 @@ class CdnController(BaseController):
             (['--period'], dict(help="""(string) 时间粒度，可选值:[oneMin,fiveMin,followTime],followTime只会返回一个汇总后的数据 """, dest='period',  required=False)),
             (['--group-by'], dict(help="""(string) 分组依据,只能按域名[domain]分组 """, dest='groupBy',  required=False)),
             (['--cache-type'], dict(help="""(string) 查询节点层级，可选值:[all,edge,mid],默认查询all,edge边缘 mid中间 """, dest='cacheType',  required=False)),
+            (['--ip-type'], dict(help="""(string) 查询IP类型，可选值:[,ipv4,ipv6],默认查询all """, dest='ipType',  required=False)),
             (['--input-json'], dict(help='(json) 以json字符串或文件绝对路径形式作为输入参数。\n字符串方式举例：--input-json \'{"field":"value"}\';\n文件格式举例：--input-json file:///xxxx.json', dest='input_json', required=False)),
             (['--jdcloud-header'], dict(help="""(json) 用户自定义Header，举例：'{"x-jdcloud-security-token":"abc","test":"123"}'""", dest='jdcloudHeaders', required=False)),
             (['--headers'], dict(help="""(json) 用户自定义Header，举例：'{"x-jdcloud-security-token":"abc","test":"123"}'""", dest='headers', required=False)),
@@ -452,6 +455,7 @@ class CdnController(BaseController):
             (['--period'], dict(help="""(string) 时间粒度，可选值:[oneMin,fiveMin,followTime],followTime只会返回一个汇总后的数据 """, dest='period',  required=False)),
             (['--abroad'], dict(help="""(bool) true 代表查询境外数据，默认false查询境内数据 """, dest='abroad', type=bool, required=False)),
             (['--cache-type'], dict(help="""(string) 查询节点层级，可选值:[all,edge,mid],默认查询all,edge边缘 mid中间 """, dest='cacheType',  required=False)),
+            (['--ip-type'], dict(help="""(string) 查询IP类型，可选值:[,ipv4,ipv6],默认查询all """, dest='ipType',  required=False)),
             (['--input-json'], dict(help='(json) 以json字符串或文件绝对路径形式作为输入参数。\n字符串方式举例：--input-json \'{"field":"value"}\';\n文件格式举例：--input-json file:///xxxx.json', dest='input_json', required=False)),
             (['--jdcloud-header'], dict(help="""(json) 用户自定义Header，举例：'{"x-jdcloud-security-token":"abc","test":"123"}'""", dest='jdcloudHeaders', required=False)),
             (['--headers'], dict(help="""(json) 用户自定义Header，举例：'{"x-jdcloud-security-token":"abc","test":"123"}'""", dest='headers', required=False)),
@@ -497,6 +501,7 @@ class CdnController(BaseController):
             (['--scheme'], dict(help="""(string) 查询协议，可选值:[http,https,all],传空默认返回全部协议汇总后的数据 """, dest='scheme',  required=False)),
             (['--abroad'], dict(help="""(bool) true 代表查询境外数据，默认false查询境内数据 """, dest='abroad', type=bool, required=False)),
             (['--cache-type'], dict(help="""(string) 查询节点层级，可选值:[all,edge,mid],默认查询all,edge边缘 mid中间 """, dest='cacheType',  required=False)),
+            (['--ip-type'], dict(help="""(string) 查询IP类型，可选值:[,ipv4,ipv6],默认查询all """, dest='ipType',  required=False)),
             (['--input-json'], dict(help='(json) 以json字符串或文件绝对路径形式作为输入参数。\n字符串方式举例：--input-json \'{"field":"value"}\';\n文件格式举例：--input-json file:///xxxx.json', dest='input_json', required=False)),
             (['--jdcloud-header'], dict(help="""(json) 用户自定义Header，举例：'{"x-jdcloud-security-token":"abc","test":"123"}'""", dest='jdcloudHeaders', required=False)),
             (['--headers'], dict(help="""(json) 用户自定义Header，举例：'{"x-jdcloud-security-token":"abc","test":"123"}'""", dest='headers', required=False)),
@@ -541,6 +546,7 @@ class CdnController(BaseController):
             (['--group-by'], dict(help="""(string) 分组依据，可选值：[area,isp,domain,scheme] """, dest='groupBy',  required=False)),
             (['--abroad'], dict(help="""(bool) true 代表查询境外数据，默认false查询境内数据 """, dest='abroad', type=bool, required=False)),
             (['--cache-type'], dict(help="""(string) 查询节点层级，可选值:[all,edge,mid],默认查询all,edge边缘 mid中间 """, dest='cacheType',  required=False)),
+            (['--ip-type'], dict(help="""(string) 查询IP类型，可选值:[,ipv4,ipv6],默认查询all """, dest='ipType',  required=False)),
             (['--input-json'], dict(help='(json) 以json字符串或文件绝对路径形式作为输入参数。\n字符串方式举例：--input-json \'{"field":"value"}\';\n文件格式举例：--input-json file:///xxxx.json', dest='input_json', required=False)),
             (['--jdcloud-header'], dict(help="""(json) 用户自定义Header，举例：'{"x-jdcloud-security-token":"abc","test":"123"}'""", dest='jdcloudHeaders', required=False)),
             (['--headers'], dict(help="""(json) 用户自定义Header，举例：'{"x-jdcloud-security-token":"abc","test":"123"}'""", dest='headers', required=False)),
@@ -5509,6 +5515,42 @@ class CdnController(BaseController):
 
     @expose(
         arguments=[
+            (['--domains'], dict(help="""(array) 域名列表。最多30个 """, dest='domains',  required=False)),
+            (['--ip-list'], dict(help="""(array) ip列表。最多50个 """, dest='ipList',  required=False)),
+            (['--forbid-time'], dict(help="""(int) 封禁时长，单位分钟。默认1440 """, dest='forbidTime', type=int, required=False)),
+            (['--action'], dict(help="""(string) forbid or resume.代表封禁和解封。 """, dest='action',  required=False)),
+            (['--input-json'], dict(help='(json) 以json字符串或文件绝对路径形式作为输入参数。\n字符串方式举例：--input-json \'{"field":"value"}\';\n文件格式举例：--input-json file:///xxxx.json', dest='input_json', required=False)),
+            (['--jdcloud-header'], dict(help="""(json) 用户自定义Header，举例：'{"x-jdcloud-security-token":"abc","test":"123"}'""", dest='jdcloudHeaders', required=False)),
+            (['--headers'], dict(help="""(json) 用户自定义Header，举例：'{"x-jdcloud-security-token":"abc","test":"123"}'""", dest='headers', required=False)),
+        ],
+        formatter_class=RawTextHelpFormatter,
+        help=''' 批量添加域名ip黑名单 ''',
+        description='''
+            批量添加域名ip黑名单。
+
+            示例: jdc cdn batch-ip-black-list 
+        ''',
+    )
+    def batch_ip_black_list(self):
+        client_factory = ClientFactory('cdn')
+        client = client_factory.get(self.app)
+        if client is None:
+            return
+
+        try:
+            from jdcloud_sdk.services.cdn.apis.BatchIpBlackListRequest import BatchIpBlackListRequest
+            params_dict = collect_user_args(self.app)
+            headers = collect_user_headers(self.app)
+            req = BatchIpBlackListRequest(params_dict, headers)
+            resp = client.send(req)
+            Printer.print_result(resp)
+        except ImportError:
+            print('{"error":"This api is not supported, please use the newer version"}')
+        except Exception as e:
+            print(e)
+
+    @expose(
+        arguments=[
             (['--start-time'], dict(help="""(string) 查询起始时间,UTC时间，格式为:yyyy-MM-dd'T'HH:mm:ss'Z'，示例:2018-10-21T10:00:00Z """, dest='startTime',  required=False)),
             (['--end-time'], dict(help="""(string) 查询截止时间,UTC时间，格式为:yyyy-MM-dd'T'HH:mm:ss'Z'，示例:2018-10-21T10:00:00Z """, dest='endTime',  required=False)),
             (['--domain'], dict(help="""(string) 需要查询的域名, 必须为用户pin下有权限的域名 """, dest='domain',  required=False)),
@@ -6457,6 +6499,38 @@ class CdnController(BaseController):
 
     @expose(
         arguments=[
+            (['--input-json'], dict(help='(json) 以json字符串或文件绝对路径形式作为输入参数。\n字符串方式举例：--input-json \'{"field":"value"}\';\n文件格式举例：--input-json file:///xxxx.json', dest='input_json', required=False)),
+            (['--jdcloud-header'], dict(help="""(json) 用户自定义Header，举例：'{"x-jdcloud-security-token":"abc","test":"123"}'""", dest='jdcloudHeaders', required=False)),
+            (['--headers'], dict(help="""(json) 用户自定义Header，举例：'{"x-jdcloud-security-token":"abc","test":"123"}'""", dest='headers', required=False)),
+        ],
+        formatter_class=RawTextHelpFormatter,
+        help=''' null ''',
+        description='''
+            null。
+
+            示例: jdc cdn query-pin-can-iptype 
+        ''',
+    )
+    def query_pin_can_iptype(self):
+        client_factory = ClientFactory('cdn')
+        client = client_factory.get(self.app)
+        if client is None:
+            return
+
+        try:
+            from jdcloud_sdk.services.cdn.apis.QueryPinCanIPTypeRequest import QueryPinCanIPTypeRequest
+            params_dict = collect_user_args(self.app)
+            headers = collect_user_headers(self.app)
+            req = QueryPinCanIPTypeRequest(params_dict, headers)
+            resp = client.send(req)
+            Printer.print_result(resp)
+        except ImportError:
+            print('{"error":"This api is not supported, please use the newer version"}')
+        except Exception as e:
+            print(e)
+
+    @expose(
+        arguments=[
             (['--domain'], dict(help="""(string) 用户域名 """, dest='domain',  required=True)),
             (['--source-type'], dict(help="""(string) 回源类型只能为[ips,domain]中的一种 """, dest='sourceType',  required=False)),
             (['--back-source-type'], dict(help="""(string) NA """, dest='backSourceType',  required=False)),
@@ -6922,7 +6996,7 @@ class CdnController(BaseController):
 
     @expose(
         arguments=[
-            (['--api'], dict(help="""(string) api name """, choices=['query-forbidden-info-list','create-forbidden-info','delete-forbidden-info','query-un-forbidden-status','create-live-domain-prefecth-task','query-live-prefetch-task','query-area-isp-list','query-area-isp-list-v2','query-mix-statistics-data','query-mix-statistics-with-area-data','query-mix-traffic-group-sum','query-statistics-data','query-statistics-data-group-by-area','query-statistics-data-group-sum','query-live-statistics-data','query-live-statistics-area-data-group-by','query-live-traffic-group-sum','query-statistics-top-ip','query-statistics-top-url','query-dir-bandwidth','query-dir-stats-data','query-customized-dir-band-width','query-stream-info','query-domain-temp-inst-list','query-domain-temp-pro-keys','modify-domain-temp-inst','query-domain-temp-inst','del-domain-temp-instance','get-domain-list','get-domain-list-by-filter','get-domain-detail','create-domain','delete-domain','start-domain','stop-domain','query-oss-buckets','batch-create','query-domain-config','config-service-notice','query-service-notice','query-online-billing-type','set-online-billing-type','query-domain-config-status','check-whether-ip-belong-to-jcloud','query-service-ip','get-all-upper-node-ip-list','query-domain-group-list','query-domain-group-detail','query-domains-not-in-group','update-domain-group','create-domain-group','batch-delete-domain-group','query-waf-switch','set-waf-switch','query-waf-white-rule-switch','set-waf-white-rule-switch','querywaf-white-rules','create-waf-white-rule','update-waf-white-rule','enable-waf-white-rules','disable-waf-white-rules','delete-waf-white-rules','query-waf-black-rule-switch','set-waf-black-rule-switch','querywaf-black-rules','create-waf-black-rule','update-waf-black-rule','enable-waf-black-rules','disable-waf-black-rules','delete-waf-black-rules','query-ccprotect-switch','set-ccprotect-switch','query-ccprotect-rules','create-ccprotect-rule','update-ccprotect-rule','enable-ccprotect-rule','disable-ccprotect-rule','delete-ccprotect-rule','query-web-protect-switch','set-web-protect-switch','query-web-protect-settings','update-web-protect-settings','query-waf-regions','query-ip-black-setting-status','bat-create-prefetch-task','update-prefetch-task','query-prefetch-task','stop-prefetch-task','operate-purge-task','query-purge-task','query-net-protection-rules','set-net-protection-rules','query-net-protection-rules-switch','set-net-protection-rules-switch','query-geo-areas','query-attack-type-count','query-ddos-graph','search-attack-log','preview-certificate','query-default-http-header-key','query-ip-black-list','set-ip-black-list','operate-ip-black-list','query-custom-error-page','set-custom-error-page','create-cache-rule','update-cache-rule','delete-cache-rule','set-cache-rules','query-http-header','set-http-header','delete-http-header','set-video-draft','set-range','set-ignore-query-string','set-filter-args','query-filter-args','query-user-agent','set-user-agent-config','query-accesskey-config','set-accesskey-config','set-refer','query-monitor','set-monitor','stop-monitor','set-source','operate-share-cache','set-http-type','query-follow-redirect','set-follow-redirect','query-follow-source-protocol','set-follow-source-protocol','set-domain-config','query-domain-all-config-classify','execute-domain-copy','query-extra-cache-time','set-extra-cache-time','delete-extra-cache-time','batch-set-extra-cache-time','set-gzip','config-back-source-rule','query-back-source-rule','config-url-rule','query-url-rule','config-http2','query-http2','config-back-source-path','query-back-source-path','set-accelerate-region','config-back-source-rules','query-back-source-rules','config-back-source-oss','query-back-source-oss','speed-limit','query-band','query-band-with-area','query-cdn-user-quota','query-refresh-task-by-ids','set-refresh-limit','query-refresh-limit','query-refresh-task-by-id','create-refresh-task-for-callback','create-refresh-task-for-callback-v2','query-refresh-task','create-refresh-task','get-ssl-cert-list','get-ssl-cert-detail','upload-cert','query-avg-bandwidth-for-pcdn','query-device-status-for-pcdn','query-jdbox-statistics-data','query-jdbox-statistics-data-with-group','query-jbox-avg-bandwidth','query-domains-log','query-domain-log','waf-query-pv-for-area-and-ip','waf-query-pv','waf-query-attack-details','set-auth-config','set-source-auth-config','set-live-domain-back-source','set-live-domain-ip-black-list','set-live-domain-refer','operate-live-domain-ip-black-list','set-live-domain-back-source-host','set-live-domain-access-key','set-protocol-convert','delete-forbidden-stream','query-push-domain-orapp-or-stream','query-live-domain-ip-black-white-list','batch-create-live-domain','query-live-domain-detail','query-live-domain-apps',], required=True)),
+            (['--api'], dict(help="""(string) api name """, choices=['query-forbidden-info-list','create-forbidden-info','delete-forbidden-info','query-un-forbidden-status','create-live-domain-prefecth-task','query-live-prefetch-task','query-area-isp-list','query-area-isp-list-v2','query-mix-statistics-data','query-mix-statistics-with-area-data','query-mix-traffic-group-sum','query-statistics-data','query-statistics-data-group-by-area','query-statistics-data-group-sum','query-live-statistics-data','query-live-statistics-area-data-group-by','query-live-traffic-group-sum','query-statistics-top-ip','query-statistics-top-url','query-dir-bandwidth','query-dir-stats-data','query-customized-dir-band-width','query-stream-info','query-domain-temp-inst-list','query-domain-temp-pro-keys','modify-domain-temp-inst','query-domain-temp-inst','del-domain-temp-instance','get-domain-list','get-domain-list-by-filter','get-domain-detail','create-domain','delete-domain','start-domain','stop-domain','query-oss-buckets','batch-create','query-domain-config','config-service-notice','query-service-notice','query-online-billing-type','set-online-billing-type','query-domain-config-status','check-whether-ip-belong-to-jcloud','query-service-ip','get-all-upper-node-ip-list','query-domain-group-list','query-domain-group-detail','query-domains-not-in-group','update-domain-group','create-domain-group','batch-delete-domain-group','query-waf-switch','set-waf-switch','query-waf-white-rule-switch','set-waf-white-rule-switch','querywaf-white-rules','create-waf-white-rule','update-waf-white-rule','enable-waf-white-rules','disable-waf-white-rules','delete-waf-white-rules','query-waf-black-rule-switch','set-waf-black-rule-switch','querywaf-black-rules','create-waf-black-rule','update-waf-black-rule','enable-waf-black-rules','disable-waf-black-rules','delete-waf-black-rules','query-ccprotect-switch','set-ccprotect-switch','query-ccprotect-rules','create-ccprotect-rule','update-ccprotect-rule','enable-ccprotect-rule','disable-ccprotect-rule','delete-ccprotect-rule','query-web-protect-switch','set-web-protect-switch','query-web-protect-settings','update-web-protect-settings','query-waf-regions','query-ip-black-setting-status','bat-create-prefetch-task','update-prefetch-task','query-prefetch-task','stop-prefetch-task','operate-purge-task','query-purge-task','query-net-protection-rules','set-net-protection-rules','query-net-protection-rules-switch','set-net-protection-rules-switch','query-geo-areas','query-attack-type-count','query-ddos-graph','search-attack-log','preview-certificate','query-default-http-header-key','query-ip-black-list','set-ip-black-list','operate-ip-black-list','query-custom-error-page','set-custom-error-page','create-cache-rule','update-cache-rule','delete-cache-rule','set-cache-rules','query-http-header','set-http-header','delete-http-header','set-video-draft','set-range','set-ignore-query-string','set-filter-args','query-filter-args','query-user-agent','set-user-agent-config','query-accesskey-config','set-accesskey-config','set-refer','query-monitor','set-monitor','stop-monitor','set-source','operate-share-cache','set-http-type','query-follow-redirect','set-follow-redirect','query-follow-source-protocol','set-follow-source-protocol','set-domain-config','query-domain-all-config-classify','execute-domain-copy','query-extra-cache-time','set-extra-cache-time','delete-extra-cache-time','batch-set-extra-cache-time','set-gzip','config-back-source-rule','query-back-source-rule','config-url-rule','query-url-rule','config-http2','query-http2','config-back-source-path','query-back-source-path','set-accelerate-region','config-back-source-rules','query-back-source-rules','config-back-source-oss','query-back-source-oss','speed-limit','batch-ip-black-list','query-band','query-band-with-area','query-cdn-user-quota','query-refresh-task-by-ids','set-refresh-limit','query-refresh-limit','query-refresh-task-by-id','create-refresh-task-for-callback','create-refresh-task-for-callback-v2','query-refresh-task','create-refresh-task','get-ssl-cert-list','get-ssl-cert-detail','upload-cert','query-avg-bandwidth-for-pcdn','query-device-status-for-pcdn','query-jdbox-statistics-data','query-jdbox-statistics-data-with-group','query-jbox-avg-bandwidth','query-domains-log','query-domain-log','waf-query-pv-for-area-and-ip','waf-query-pv','waf-query-attack-details','set-auth-config','set-source-auth-config','query-pin-can-iptype','set-live-domain-back-source','set-live-domain-ip-black-list','set-live-domain-refer','operate-live-domain-ip-black-list','set-live-domain-back-source-host','set-live-domain-access-key','set-protocol-convert','delete-forbidden-stream','query-push-domain-orapp-or-stream','query-live-domain-ip-black-white-list','batch-create-live-domain','query-live-domain-detail','query-live-domain-apps',], required=True)),
         ],
         formatter_class=RawTextHelpFormatter,
         help=''' 生成单个API接口的json骨架空字符串 ''',

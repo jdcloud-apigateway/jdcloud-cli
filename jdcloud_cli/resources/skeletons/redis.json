@@ -373,6 +373,21 @@
         "regionId":"",
         "cacheInstanceId":""
     },
+    "describe-hot-key-summary":{
+        "startTime":"",
+        "endTime":"",
+        "regionId":"",
+        "cacheInstanceId":""
+    },
+    "describe-hot-key-detail":{
+        "nodeId":"",
+        "pageNumber":"",
+        "pageSize":"",
+        "startTime":"",
+        "endTime":"",
+        "regionId":"",
+        "cacheInstanceId":""
+    },
     "describe-instance-class":{
         "redisVersion":"",
         "regionId":""

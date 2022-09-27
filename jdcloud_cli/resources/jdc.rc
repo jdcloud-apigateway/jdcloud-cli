@@ -27,7 +27,7 @@ _jdc_complete()
     # SETUP THE BASE LEVEL
     if [ $COMP_CWORD -eq 1 ]; then
         COMPREPLY=( $(compgen \
-                      -W "--debug -v --version -h --help configure vqd streamcomputer ssl domainservice oss redis billing portal clouddnsservice cdn streambus apigateway sts nativecontainer pod datastar kms elite iam iothub sms resourcetag jcq ias jdfusion detection iotlink renewal yunding containerregistry partner lb industrydata rds kubernetes ipanti jmr deploy sop function jdccs logs cps httpdns disk nc vm iotcore zfs ams jdro vod yundingdatapush ossopenapi baseanti mongodb live vpc monitor xdata " \
+                      -W "--debug -v --version -h --help configure vqd streamcomputer ssl domainservice oss redis billing portal clouddnsservice ag cdn streambus apigateway sts nativecontainer pod datastar kms elite iam iothub sms resourcetag jcq ias jdfusion detection iotlink renewal yunding containerregistry partner lb industrydata rds kubernetes ipanti jmr deploy sop function jdccs logs cps httpdns disk nc vm iotcore zfs ams jdro vod yundingdatapush ossopenapi baseanti mongodb live vpc monitor xdata " \
                       -- $cur) )
 
 
@@ -63,7 +63,7 @@ _jdc_complete()
 
             "redis")
                 COMPREPLY=( $(compgen \
-                    -W "-v --version -h --help generate-skeleton describe-spec-config describe-available-resource describe-available-resource2 describe-cache-instances create-cache-instance describe-cache-instance modify-cache-instance-attribute delete-cache-instance modify-cache-instance-class reset-cache-instance-password describe-instance-config modify-instance-config describe-analysis-time modify-analysis-time describe-cache-analysis-list create-cache-analysis describe-cache-analysis-result describe-client-list describe-client-ip-detail describe-backups create-backup describe-backup-policy modify-backup-policy restore-instance describe-download-url describe-cluster-info describe-ip-white-list modify-ip-white-list describe-slow-log describe-task-progress-list get-disable-commands set-disable-commands describe-accounts create-account modify-account delete-account modify-accounts start-clear-data stop-clear-data describe-clear-data describe-big-key-list create-big-key-analysis describe-big-key-detail describe-big-key-analysis-time modify-big-key-analysis-time stop-cache-analysis describe-analysis-threshold modify-analysis-threshold create-big-key-analysis2 describe-big-key-list2 describe-big-key-detail2 describe-big-key-analysis-time2 modify-big-key-analysis-time2 describe-analysis-threshold2 modify-analysis-threshold2 describe-hot-key-result2 describe-hot-key-detail2 describe-instance-class describe-available-region describe-user-quota " -- $cur) )
+                    -W "-v --version -h --help generate-skeleton describe-spec-config describe-available-resource describe-available-resource2 describe-cache-instances create-cache-instance describe-cache-instance modify-cache-instance-attribute delete-cache-instance modify-cache-instance-class reset-cache-instance-password describe-instance-config modify-instance-config describe-analysis-time modify-analysis-time describe-cache-analysis-list create-cache-analysis describe-cache-analysis-result describe-client-list describe-client-ip-detail describe-backups create-backup describe-backup-policy modify-backup-policy restore-instance describe-download-url describe-cluster-info describe-ip-white-list modify-ip-white-list describe-slow-log describe-task-progress-list get-disable-commands set-disable-commands describe-accounts create-account modify-account delete-account modify-accounts start-clear-data stop-clear-data describe-clear-data describe-big-key-list create-big-key-analysis describe-big-key-detail describe-big-key-analysis-time modify-big-key-analysis-time stop-cache-analysis describe-analysis-threshold modify-analysis-threshold create-big-key-analysis2 describe-big-key-list2 describe-big-key-detail2 describe-big-key-analysis-time2 modify-big-key-analysis-time2 describe-analysis-threshold2 modify-analysis-threshold2 describe-hot-key-result2 describe-hot-key-detail2 describe-hot-key-summary describe-hot-key-detail describe-instance-class describe-available-region describe-user-quota " -- $cur) )
                 ;;
 
             "billing")
@@ -81,9 +81,14 @@ _jdc_complete()
                     -W "-v --version -h --help generate-skeleton search-rr get-view-tree add-rr update-rr operate-rr batch-set-dns-resolve get-domains add-domain del-domain update-domain get-domain-query-count get-domain-query-traffic get-action-log add-user-view del-user-view get-user-view add-user-view-ip del-user-view-ip get-user-view-ip get-monitor add-monitor get-targets add-monitor-target operate-monitor update-monitor get-monitor-alarm-info " -- $cur) )
                 ;;
 
+            "ag")
+                COMPREPLY=( $(compgen \
+                    -W "-v --version -h --help generate-skeleton describe-quotas describe-ags create-ag describe-ag update-ag delete-ag abandon-instances set-instance-template " -- $cur) )
+                ;;
+
             "cdn")
                 COMPREPLY=( $(compgen \
-                    -W "-v --version -h --help generate-skeleton query-forbidden-info-list create-forbidden-info delete-forbidden-info query-un-forbidden-status create-live-domain-prefecth-task query-live-prefetch-task query-area-isp-list query-area-isp-list-v2 query-mix-statistics-data query-mix-statistics-with-area-data query-mix-traffic-group-sum query-statistics-data query-statistics-data-group-by-area query-statistics-data-group-sum query-live-statistics-data query-live-statistics-area-data-group-by query-live-traffic-group-sum query-statistics-top-ip query-statistics-top-url query-dir-bandwidth query-dir-stats-data query-customized-dir-band-width query-stream-info query-domain-temp-inst-list query-domain-temp-pro-keys modify-domain-temp-inst query-domain-temp-inst del-domain-temp-instance get-domain-list get-domain-list-by-filter get-domain-detail create-domain delete-domain start-domain stop-domain query-oss-buckets batch-create query-domain-config config-service-notice query-service-notice query-online-billing-type set-online-billing-type query-domain-config-status check-whether-ip-belong-to-jcloud query-service-ip get-all-upper-node-ip-list query-domain-group-list query-domain-group-detail query-domains-not-in-group update-domain-group create-domain-group batch-delete-domain-group query-waf-switch set-waf-switch query-waf-white-rule-switch set-waf-white-rule-switch querywaf-white-rules create-waf-white-rule update-waf-white-rule enable-waf-white-rules disable-waf-white-rules delete-waf-white-rules query-waf-black-rule-switch set-waf-black-rule-switch querywaf-black-rules create-waf-black-rule update-waf-black-rule enable-waf-black-rules disable-waf-black-rules delete-waf-black-rules query-ccprotect-switch set-ccprotect-switch query-ccprotect-rules create-ccprotect-rule update-ccprotect-rule enable-ccprotect-rule disable-ccprotect-rule delete-ccprotect-rule query-web-protect-switch set-web-protect-switch query-web-protect-settings update-web-protect-settings query-waf-regions query-ip-black-setting-status bat-create-prefetch-task update-prefetch-task query-prefetch-task stop-prefetch-task operate-purge-task query-purge-task query-net-protection-rules set-net-protection-rules query-net-protection-rules-switch set-net-protection-rules-switch query-geo-areas query-attack-type-count query-ddos-graph search-attack-log preview-certificate query-default-http-header-key query-ip-black-list set-ip-black-list operate-ip-black-list query-custom-error-page set-custom-error-page create-cache-rule update-cache-rule delete-cache-rule set-cache-rules query-http-header set-http-header delete-http-header set-video-draft set-range set-ignore-query-string set-filter-args query-filter-args query-user-agent set-user-agent-config query-accesskey-config set-accesskey-config set-refer query-monitor set-monitor stop-monitor set-source operate-share-cache set-http-type query-follow-redirect set-follow-redirect query-follow-source-protocol set-follow-source-protocol set-domain-config query-domain-all-config-classify execute-domain-copy query-extra-cache-time set-extra-cache-time delete-extra-cache-time batch-set-extra-cache-time set-gzip config-back-source-rule query-back-source-rule config-url-rule query-url-rule config-http2 query-http2 config-back-source-path query-back-source-path set-accelerate-region config-back-source-rules query-back-source-rules config-back-source-oss query-back-source-oss speed-limit query-band query-band-with-area query-cdn-user-quota query-refresh-task-by-ids set-refresh-limit query-refresh-limit query-refresh-task-by-id create-refresh-task-for-callback create-refresh-task-for-callback-v2 query-refresh-task create-refresh-task get-ssl-cert-list get-ssl-cert-detail upload-cert query-avg-bandwidth-for-pcdn query-device-status-for-pcdn query-jdbox-statistics-data query-jdbox-statistics-data-with-group query-jbox-avg-bandwidth query-domains-log query-domain-log waf-query-pv-for-area-and-ip waf-query-pv waf-query-attack-details set-auth-config set-source-auth-config set-live-domain-back-source set-live-domain-ip-black-list set-live-domain-refer operate-live-domain-ip-black-list set-live-domain-back-source-host set-live-domain-access-key set-protocol-convert delete-forbidden-stream query-push-domain-orapp-or-stream query-live-domain-ip-black-white-list batch-create-live-domain query-live-domain-detail query-live-domain-apps " -- $cur) )
+                    -W "-v --version -h --help generate-skeleton query-forbidden-info-list create-forbidden-info delete-forbidden-info query-un-forbidden-status create-live-domain-prefecth-task query-live-prefetch-task query-area-isp-list query-area-isp-list-v2 query-mix-statistics-data query-mix-statistics-with-area-data query-mix-traffic-group-sum query-statistics-data query-statistics-data-group-by-area query-statistics-data-group-sum query-live-statistics-data query-live-statistics-area-data-group-by query-live-traffic-group-sum query-statistics-top-ip query-statistics-top-url query-dir-bandwidth query-dir-stats-data query-customized-dir-band-width query-stream-info query-domain-temp-inst-list query-domain-temp-pro-keys modify-domain-temp-inst query-domain-temp-inst del-domain-temp-instance get-domain-list get-domain-list-by-filter get-domain-detail create-domain delete-domain start-domain stop-domain query-oss-buckets batch-create query-domain-config config-service-notice query-service-notice query-online-billing-type set-online-billing-type query-domain-config-status check-whether-ip-belong-to-jcloud query-service-ip get-all-upper-node-ip-list query-domain-group-list query-domain-group-detail query-domains-not-in-group update-domain-group create-domain-group batch-delete-domain-group query-waf-switch set-waf-switch query-waf-white-rule-switch set-waf-white-rule-switch querywaf-white-rules create-waf-white-rule update-waf-white-rule enable-waf-white-rules disable-waf-white-rules delete-waf-white-rules query-waf-black-rule-switch set-waf-black-rule-switch querywaf-black-rules create-waf-black-rule update-waf-black-rule enable-waf-black-rules disable-waf-black-rules delete-waf-black-rules query-ccprotect-switch set-ccprotect-switch query-ccprotect-rules create-ccprotect-rule update-ccprotect-rule enable-ccprotect-rule disable-ccprotect-rule delete-ccprotect-rule query-web-protect-switch set-web-protect-switch query-web-protect-settings update-web-protect-settings query-waf-regions query-ip-black-setting-status bat-create-prefetch-task update-prefetch-task query-prefetch-task stop-prefetch-task operate-purge-task query-purge-task query-net-protection-rules set-net-protection-rules query-net-protection-rules-switch set-net-protection-rules-switch query-geo-areas query-attack-type-count query-ddos-graph search-attack-log preview-certificate query-default-http-header-key query-ip-black-list set-ip-black-list operate-ip-black-list query-custom-error-page set-custom-error-page create-cache-rule update-cache-rule delete-cache-rule set-cache-rules query-http-header set-http-header delete-http-header set-video-draft set-range set-ignore-query-string set-filter-args query-filter-args query-user-agent set-user-agent-config query-accesskey-config set-accesskey-config set-refer query-monitor set-monitor stop-monitor set-source operate-share-cache set-http-type query-follow-redirect set-follow-redirect query-follow-source-protocol set-follow-source-protocol set-domain-config query-domain-all-config-classify execute-domain-copy query-extra-cache-time set-extra-cache-time delete-extra-cache-time batch-set-extra-cache-time set-gzip config-back-source-rule query-back-source-rule config-url-rule query-url-rule config-http2 query-http2 config-back-source-path query-back-source-path set-accelerate-region config-back-source-rules query-back-source-rules config-back-source-oss query-back-source-oss speed-limit batch-ip-black-list query-band query-band-with-area query-cdn-user-quota query-refresh-task-by-ids set-refresh-limit query-refresh-limit query-refresh-task-by-id create-refresh-task-for-callback create-refresh-task-for-callback-v2 query-refresh-task create-refresh-task get-ssl-cert-list get-ssl-cert-detail upload-cert query-avg-bandwidth-for-pcdn query-device-status-for-pcdn query-jdbox-statistics-data query-jdbox-statistics-data-with-group query-jbox-avg-bandwidth query-domains-log query-domain-log waf-query-pv-for-area-and-ip waf-query-pv waf-query-attack-details set-auth-config set-source-auth-config query-pin-can-iptype set-live-domain-back-source set-live-domain-ip-black-list set-live-domain-refer operate-live-domain-ip-black-list set-live-domain-back-source-host set-live-domain-access-key set-protocol-convert delete-forbidden-stream query-push-domain-orapp-or-stream query-live-domain-ip-black-white-list batch-create-live-domain query-live-domain-detail query-live-domain-apps " -- $cur) )
                 ;;
 
             "streambus")
@@ -902,6 +907,14 @@ _jdc_complete()
                         COMPREPLY=( $(compgen \
                             -W "-h --help --headers --input-json --region-id --cache-instance-id --node-id --page-number --page-size " -- $cur) )
                         ;;
+                    "describe-hot-key-summary")
+                        COMPREPLY=( $(compgen \
+                            -W "-h --help --headers --input-json --region-id --cache-instance-id --start-time --end-time " -- $cur) )
+                        ;;
+                    "describe-hot-key-detail")
+                        COMPREPLY=( $(compgen \
+                            -W "-h --help --headers --input-json --region-id --cache-instance-id --node-id --page-number --page-size --start-time --end-time " -- $cur) )
+                        ;;
                     "describe-instance-class")
                         COMPREPLY=( $(compgen \
                             -W "-h --help --headers --input-json --region-id --redis-version " -- $cur) )
@@ -1075,6 +1088,48 @@ _jdc_complete()
                 esac
                 ;;
 
+	        "ag")
+                case "$prev" in
+                    # HANDLE EVERYTHING AFTER THE THIRD LEVEL NAMESPACE
+                    "describe-quotas")
+                        COMPREPLY=( $(compgen \
+                            -W "-h --help --headers --input-json --region-id --filters " -- $cur) )
+                        ;;
+                    "describe-ags")
+                        COMPREPLY=( $(compgen \
+                            -W "-h --help --headers --input-json --region-id --page-number --page-size --filters " -- $cur) )
+                        ;;
+                    "create-ag")
+                        COMPREPLY=( $(compgen \
+                            -W "-h --help --headers --input-json --region-id --azs --ag-name --ag-type --instance-template-id --description --configuration-type --placement-type " -- $cur) )
+                        ;;
+                    "describe-ag")
+                        COMPREPLY=( $(compgen \
+                            -W "-h --help --headers --input-json --region-id --ag-id " -- $cur) )
+                        ;;
+                    "update-ag")
+                        COMPREPLY=( $(compgen \
+                            -W "-h --help --headers --input-json --region-id --ag-id --description --name " -- $cur) )
+                        ;;
+                    "delete-ag")
+                        COMPREPLY=( $(compgen \
+                            -W "-h --help --headers --input-json --region-id --ag-id " -- $cur) )
+                        ;;
+                    "abandon-instances")
+                        COMPREPLY=( $(compgen \
+                            -W "-h --help --headers --input-json --region-id --ag-id --instance-ids " -- $cur) )
+                        ;;
+                    "set-instance-template")
+                        COMPREPLY=( $(compgen \
+                            -W "-h --help --headers --input-json --region-id --ag-id --instance-template-id " -- $cur) )
+                        ;;
+
+                    "generate-skeleton")
+                        COMPREPLY=( $(compgen -W "-h --help --api" -- $cur) )
+                        ;;
+                esac
+                ;;
+
 	        "cdn")
                 case "$prev" in
                     # HANDLE EVERYTHING AFTER THE THIRD LEVEL NAMESPACE
@@ -1112,27 +1167,27 @@ _jdc_complete()
                         ;;
                     "query-mix-statistics-data")
                         COMPREPLY=( $(compgen \
-                            -W "-h --help --headers --input-json --start-time --end-time --domain --fields --area --isp --period --scheme --cache-type " -- $cur) )
+                            -W "-h --help --headers --input-json --start-time --end-time --domain --fields --area --isp --period --scheme --cache-type --ip-type " -- $cur) )
                         ;;
                     "query-mix-statistics-with-area-data")
                         COMPREPLY=( $(compgen \
-                            -W "-h --help --headers --input-json --start-time --end-time --domain --fields --area --isp --period --cache-type " -- $cur) )
+                            -W "-h --help --headers --input-json --start-time --end-time --domain --fields --area --isp --period --cache-type --ip-type " -- $cur) )
                         ;;
                     "query-mix-traffic-group-sum")
                         COMPREPLY=( $(compgen \
-                            -W "-h --help --headers --input-json --start-time --end-time --domain --fields --area --isp --period --group-by --cache-type " -- $cur) )
+                            -W "-h --help --headers --input-json --start-time --end-time --domain --fields --area --isp --period --group-by --cache-type --ip-type " -- $cur) )
                         ;;
                     "query-statistics-data")
                         COMPREPLY=( $(compgen \
-                            -W "-h --help --headers --input-json --start-time --end-time --domain --sub-domain --fields --area --isp --origin --period --abroad --cache-type " -- $cur) )
+                            -W "-h --help --headers --input-json --start-time --end-time --domain --sub-domain --fields --area --isp --origin --period --abroad --cache-type --ip-type " -- $cur) )
                         ;;
                     "query-statistics-data-group-by-area")
                         COMPREPLY=( $(compgen \
-                            -W "-h --help --headers --input-json --start-time --end-time --domain --sub-domain --fields --area --isp --origin --period --group-by --scheme --abroad --cache-type " -- $cur) )
+                            -W "-h --help --headers --input-json --start-time --end-time --domain --sub-domain --fields --area --isp --origin --period --group-by --scheme --abroad --cache-type --ip-type " -- $cur) )
                         ;;
                     "query-statistics-data-group-sum")
                         COMPREPLY=( $(compgen \
-                            -W "-h --help --headers --input-json --start-time --end-time --domain --sub-domain --fields --area --isp --origin --period --group-by --abroad --cache-type " -- $cur) )
+                            -W "-h --help --headers --input-json --start-time --end-time --domain --sub-domain --fields --area --isp --origin --period --group-by --abroad --cache-type --ip-type " -- $cur) )
                         ;;
                     "query-live-statistics-data")
                         COMPREPLY=( $(compgen \
@@ -1694,6 +1749,10 @@ _jdc_complete()
                         COMPREPLY=( $(compgen \
                             -W "-h --help --headers --input-json --domain --limit-rate " -- $cur) )
                         ;;
+                    "batch-ip-black-list")
+                        COMPREPLY=( $(compgen \
+                            -W "-h --help --headers --input-json --domains --ip-list --forbid-time --action " -- $cur) )
+                        ;;
                     "query-band")
                         COMPREPLY=( $(compgen \
                             -W "-h --help --headers --input-json --start-time --end-time --domain --area --isp --period " -- $cur) )
@@ -1797,6 +1856,10 @@ _jdc_complete()
                     "set-source-auth-config")
                         COMPREPLY=( $(compgen \
                             -W "-h --help --headers --input-json --domain --enable --origin-role --auth-type --tos-auth-info --oss-auth-info " -- $cur) )
+                        ;;
+                    "query-pin-can-iptype")
+                        COMPREPLY=( $(compgen \
+                            -W "-h --help --headers --input-json " -- $cur) )
                         ;;
                     "set-live-domain-back-source")
                         COMPREPLY=( $(compgen \

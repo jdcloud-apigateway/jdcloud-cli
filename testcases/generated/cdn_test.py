@@ -1409,6 +1409,15 @@ class CdnTest(unittest.TestCase):
         result = json.loads(content)
         self.assertIsInstance(result, dict)
 
+    def test_batch_ip_black_list(self):
+        cmd = """python ../../main.py cdn batch-ip-black-list """
+        with os.popen(cmd) as f:
+            content = f.read()
+
+        print(content)
+        result = json.loads(content)
+        self.assertIsInstance(result, dict)
+
     def test_query_band(self):
         cmd = """python ../../main.py cdn query-band """
         with os.popen(cmd) as f:
@@ -1636,6 +1645,15 @@ class CdnTest(unittest.TestCase):
 
     def test_set_source_auth_config(self):
         cmd = """python ../../main.py cdn set-source-auth-config  --domain 'xxx'"""
+        with os.popen(cmd) as f:
+            content = f.read()
+
+        print(content)
+        result = json.loads(content)
+        self.assertIsInstance(result, dict)
+
+    def test_query_pin_can_iptype(self):
+        cmd = """python ../../main.py cdn query-pin-can-iptype """
         with os.popen(cmd) as f:
             content = f.read()
 

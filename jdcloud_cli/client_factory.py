@@ -27,6 +27,7 @@ from jdcloud_sdk.services.redis.client.RedisClient import RedisClient
 from jdcloud_sdk.services.billing.client.BillingClient import BillingClient
 from jdcloud_sdk.services.portal.client.PortalClient import PortalClient
 from jdcloud_sdk.services.clouddnsservice.client.ClouddnsserviceClient import ClouddnsserviceClient
+from jdcloud_sdk.services.ag.client.AgClient import AgClient
 from jdcloud_sdk.services.cdn.client.CdnClient import CdnClient
 from jdcloud_sdk.services.streambus.client.StreambusClient import StreambusClient
 from jdcloud_sdk.services.apigateway.client.ApigatewayClient import ApigatewayClient
@@ -98,6 +99,7 @@ class ClientFactory(object):
             'billing': BillingClient,
             'portal': PortalClient,
             'clouddnsservice': ClouddnsserviceClient,
+            'ag': AgClient,
             'cdn': CdnClient,
             'streambus': StreambusClient,
             'apigateway': ApigatewayClient,
